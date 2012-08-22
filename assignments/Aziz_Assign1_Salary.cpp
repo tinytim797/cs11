@@ -25,8 +25,8 @@ int main()
     cout << "======================================\n"  << endl;
     cout << "Employee Salary Records"    << endl;
     cout << "======================="    << endl;
-    
-	//User Input
+
+    //User Input
     cout << "Please Enter your Employee ID: ";
     cin  >> id;
     cout << "Please Enter Hours Worked:     ";
