@@ -37,7 +37,7 @@ int main()
     salary = hours * rate;
 
     //Output (Result of User Input)
-    cout << "\n"						 << endl;
+    cout << "\n"                         << endl;
     cout << "Employee ID  : "  << id     << endl;
     cout << "Hours Worked : "  << hours  << endl;
     cout << "Rate per Hour: $" << rate   << "/hour" << endl;
