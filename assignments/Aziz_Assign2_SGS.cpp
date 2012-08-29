@@ -13,8 +13,8 @@ int main()
 {
 	//Variables
 	int    id;
-	string name = string();
-	string lname = string();
+	string name;
+	string lname;
 	double gradeOne;
 	double gradeTwo;
 	double gradeThree;
