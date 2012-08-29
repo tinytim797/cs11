@@ -66,7 +66,7 @@ int main()
 	else if (average <90 && average >= 80)
 	{	
 		cout << "Grade:      B" << endl;
-	    cout << "Comments:   Good job!" << endl;
+		cout << "Comments:   Good job!" << endl;
 	}    
 	else if (average <80 && average >= 70)
 	{
