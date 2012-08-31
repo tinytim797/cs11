@@ -50,38 +50,38 @@ int main()
 	//Output
 	cout << "\nStudent Information for " << name << " " << lname << endl;
 	cout << "============================" << endl;
-	cout << "ID:         " << id << endl;
-	cout << "First Name: " << name << endl;
-	cout << "Last Name:  " << lname << endl;
-	cout << "Total:      " << total << endl;
-	cout << "Average:    " << average << "%" << endl;
+	cout << "ID:........." << id << endl;
+	cout << "First Name:." << name << endl;
+	cout << "Last Name:.." << lname << endl;
+	cout << "Total:......" << total << endl;
+	cout << "Average:...." << average << "%" << endl;
 	
 	//Letter Grading + Comments
 	if (average >= 90)
 	{
-		cout << "Grade:      A" << endl;
-		cout << "Comments:   Congratualtions on your achievements!" << endl;
+		cout << "Grade:......A" << endl;
+		cout << "Comments:...Congratualtions on your achievements!" << endl;
 	}
 	
 	else if (average <90 && average >= 80)
 	{	
-		cout << "Grade:      B" << endl;
-		cout << "Comments:   Good job!" << endl;
+		cout << "Grade:......B" << endl;
+		cout << "Comments:...Good job!" << endl;
 	}    
 	else if (average <80 && average >= 70)
 	{
-		cout << "Grade:      C" << endl;
-		cout << "Comments:   Study just a little bit more!" << endl;
+		cout << "Grade:......C" << endl;
+		cout << "Comments:...Study just a little bit more!" << endl;
 	}
 	else if (average <70 && average >= 60)
 	{
-		cout << "Grade:      D" << endl;
-		cout << "Comments:   You can do better!" << endl;
+		cout << "Grade:......D" << endl;
+		cout << "Comments:...You can do better!" << endl;
 	}
 	else if (average < 60)
 	{
-		cout << "Grade:      F" << endl;
-		cout << "Comments:   Apply Yourself!" << endl;
+		cout << "Grade:......F" << endl;
+		cout << "Comments:...Apply Yourself!" << endl;
 	}
 
     return 0;
