@@ -11,16 +11,6 @@ using namespace std;
 
 int main()
 {
-	//Variables
-	int    id;
-	string name;
-	string lname;
-	double gradeOne;
-	double gradeTwo;
-	double gradeThree;
-	double total;
-	double average;
-
 	//Title
 	cout << "============================" << endl;
 	cout << "Student Grading System (SGS)" << endl;
@@ -28,6 +18,13 @@ int main()
 	cout << "David Flores"                 << endl;
 	cout << "August 28, 2012"              << endl;
 	cout << "============================" << endl;
+
+	int    id;
+	string name;
+	string lname;
+	double gradeOne;
+	double gradeTwo;
+	double gradeThree;
 
 	//User Input
 	cout << "\nEnter Student ID:     ";
@@ -44,8 +41,8 @@ int main()
 	cin  >> gradeThree;
 
 	//Calulations for total & average
-	total = gradeOne + gradeTwo + gradeThree;
-	average = total / 3;
+	int total = gradeOne + gradeTwo + gradeThree;
+	int average = total / 3;
 
 	//Output
 	cout << "\nStudent Information for " << name << " " << lname << endl;
@@ -57,28 +54,26 @@ int main()
 	cout << "Average: ..... " << average << "%" << endl;
 	
 	//Letter Grading + Comments
+	
 	if (average >= 90)
 	{
 		cout << "Grade: ....... A" << endl;
 		cout << "Comments: .... Congratualtions on your achievements!" << endl;
 	}
 	
-	else if (average <90 && average >= 80)
-	{	
+	else if (average >= 80)
+		
 		cout << "Grade: ....... B" << endl;
-		cout << "Comments: .... Good job!" << endl;
-	}    
-	else if (average <80 && average >= 70)
-	{
+	  
+	else if ( average >= 70)
+
 		cout << "Grade: ....... C" << endl;
-		cout << "Comments: .... Study just a little bit more!" << endl;
-	}
-	else if (average <70 && average >= 60)
-	{
+
+	else if (average >= 60)
+
 		cout << "Grade: ....... D" << endl;
-		cout << "Comments: .... You can do better!" << endl;
-	}
-	else if (average < 60)
+
+	else
 	{
 		cout << "Grade: ....... F" << endl;
 		cout << "Comments: .... Apply Yourself!" << endl;
