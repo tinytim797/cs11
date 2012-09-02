@@ -66,7 +66,7 @@ int main()
 	cout << "Comment: ..... " ;
 
 	if ( letterGrade == "A" )
-		cout << "Comment Congratulations on your achievements!" << endl;
+		cout << "Congratulations on your achievements!" << endl;
 	else if ( letterGrade == "F" )
 		cout << "Apply Yourself!" << endl;
 	
