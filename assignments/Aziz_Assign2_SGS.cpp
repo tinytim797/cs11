@@ -1,5 +1,5 @@
 /**		Author: David Flores
- *		Date: Aug. 28, 2012
+ *		Date: Sep 02, 2012
  *		Program: Aziz_Assign2_SGS.cpp
  *		Description: Displays grades
  *		appropriate for the student
@@ -17,6 +17,7 @@ int main()
 	cout << "David Flores"                 << endl;
 	cout << "August 28, 2012"              << endl;
 	cout << "============================" << endl;
+	cout << endl;
 
 	int    id;
 	string name;
@@ -26,7 +27,7 @@ int main()
 	double gradeThree;
 
 	//User Input
-	cout << "\nEnter Student ID:     ";
+	cout << "Enter Student ID:     ";
 	cin  >> id;
 	cout << "Enter First Name:     ";
 	cin  >> name;
@@ -38,37 +39,37 @@ int main()
 	cin  >> gradeTwo;
 	cout << "Enter Grade for CS21: ";
 	cin  >> gradeThree;
-		
+	cout << endl;
+
 	double total = ( gradeOne + gradeTwo + gradeThree );
 	double average = ( total / 3 );
-	
+
 	string letterGrade;
 
-	if (average >= 90)
+	if ( average >= 90 )
 		letterGrade = "A";
-	else if (average >= 80)
+	else if ( average >= 80 )
 		letterGrade = "B";
-	else if ( average >= 70)
+	else if ( average >= 70 )
 		letterGrade = "C";
-	else if (average >= 60)
+	else if ( average >= 60 )
 		letterGrade = "D";
 	else
 		letterGrade = "F";
 
-	cout << "\nStudent Information for " << name << " " << lname << endl;
+	cout << "Student Information:" << endl;
 	cout << "============================" << endl;
 	cout << "ID: .......... " << id << endl;
 	cout << "First Name: .. " << name << endl;
 	cout << "Last Name: ... " << lname << endl;
-	cout << "Total: ....... " << average << endl;
+	cout << "Total: ....... " << total << endl;
 	cout << "Average: ..... " << average << "%" << endl;
 	cout << "Grade: ....... " << letterGrade << endl;
-	cout << "Comment: ..... " ;
 
 	if ( letterGrade == "A" )
-		cout << "Congratulations on your achievements!" << endl;
+		cout << "Comment: ..... Congratulations on your achievements!" << endl;
 	else if ( letterGrade == "F" )
-		cout << "Apply Yourself!" << endl;
-	
+		cout << "Comment: ..... Apply Yourself!" << endl;
+
 	return 0;
 }
