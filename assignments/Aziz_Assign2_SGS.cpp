@@ -26,7 +26,6 @@ int main()
 	double gradeTwo;
 	double gradeThree;
 
-	//User Input
 	cout << "Enter Student ID:     ";
 	cin  >> id;
 	cout << "Enter First Name:     ";
