@@ -20,11 +20,8 @@ int main()
 	cout << endl;
 
 	int    id;
-	string name;
-	string lname;
-	double gradeOne;
-	double gradeTwo;
-	double gradeThree;
+	string name,lname;
+	double gradeOne,gradeTwo,gradeThree;
 
 	cout << "Enter Student ID:     ";
 	cin  >> id;
