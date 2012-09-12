@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 using namespace std;
 
 int main()
@@ -55,12 +56,12 @@ int main()
 
 	cout << "Student Information:" << endl;
 	cout << "============================" << endl;
-	cout << "ID: .......... " << id << endl;
-	cout << "First Name: .. " << name << endl;
-	cout << "Last Name: ... " << lname << endl;
-	cout << "Total: ....... " << total << endl;
-	cout << "Average: ..... " << average << "%" << endl;
-	cout << "Grade: ....... " << letterGrade << endl;
+	cout << "ID:        " << setw(4)<< setfill(".") << id << endl;
+	cout << "First Name:" << setw(4)<< setfill(".") << name << endl;
+	cout << "Last Name: " << setw(4)<< setfill(".") << lname << endl;
+	cout << "Total:     " << setw(4)<< setfill(".") << total << endl;
+	cout << "Average:   " << setw(4)<< setfill(".") << average << "%" << endl;
+	cout << "Grade:     " << setw(4)<< setfill(".") << letterGrade << endl;
 
 	if ( letterGrade == "A" )
 		cout << "Comment: ..... Congratulations on your achievements!" << endl;
