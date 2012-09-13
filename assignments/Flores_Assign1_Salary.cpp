@@ -1,10 +1,10 @@
 /*		Author: David Flores
-		Date: Aug. 22, 2012
-		Program: Aziz_Assign1_Salary.cpp
-		Description: This program displays
-		EmployeeID, Hours worked, Rate per
-		hour, and Gross Salary
-*/
+ *		Date: Aug. 22, 2012
+ *		Program: Aziz_Assign1_Salary.cpp
+ *		Description: This program displays
+ *		EmployeeID, Hours worked, Rate per
+ *		hour, and Gross Salary
+ */
 
 #include <iostream>
 using namespace std;
