@@ -1,8 +1,9 @@
-/*		Author: David Flores
- *		Date: Sep 10, 2012
- *		Program: Aziz_Assign3_Paycheck.cpp
- *		Description: Calculates paycheck
- *              using tax rate.
+/*
+ *	Author: David Flores
+ *	Date: Sep 10, 2012
+ *	Program: Aziz_Assign3_Paycheck.cpp
+ *	Description: Calculates paycheck
+ *  using tax rate.
  */
 
 #include <iostream>
@@ -14,7 +15,7 @@ using namespace std;
 
 int main()
 {
-	//ofstream outFile("output.txt");
+	//Declare file stream variables
 	ofstream outFile;
 
 	const double FedTax = 0.15, StateTax = 0.035, SocSecTax = 0.0575, MedTax = 0.0275, PenPlan = 0.05, HealthIns = 75.0;
@@ -39,9 +40,10 @@ int main()
 	pen = ( PenPlan * gPay );
 	netPay = ( gPay - (fed + state + socSec + med + pen + HealthIns) );
 	
-	//Output to output.txt
+	//Open the output file
 	outFile.open("output.txt");
-
+	
+	//Output to "output.txt"
 	outFile << fixed << showpoint << setprecision(2);
 
 	outFile << emplFirstName << " " << emplLastName << endl;
@@ -54,6 +56,8 @@ int main()
 	outFile << left << setw(30) << setfill('.') << "Health Insurance: "      << " $ " << right << setw(7) << setfill(' ') << HealthIns << endl;
 	outFile << left << setw(30) << setfill('.') << "Net Pay: "               << " $ " << right << setw(7) << setfill(' ') << netPay    << endl;
 
+	//Closes the file
 	outFile.close();
+	
 	return 0;
 }

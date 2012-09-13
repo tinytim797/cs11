@@ -1,8 +1,9 @@
-/*		Author: David Flores
- *		Date: Sep 10, 2012
- *		Program: Aziz_Assign3_Paycheck.cpp
- *		Description: Calculates paycheck
- *      using tax rate.
+/*
+ *	Author: David Flores
+ *	Date: Sep 13, 2012
+ *	Program: Aziz_Assign3_Paycheck.cpp
+ *	Description: Calculates paycheck
+ *  using tax rate.
  */
 
 #include <iostream>
@@ -32,7 +33,7 @@ int main()
 	med = ( MedTax * gPay );
 	pen = ( PenPlan * gPay );
 	netPay = ( gPay - (fed + state + socSec + med + pen + HealthIns) );
-
+	
 	//Output to "output.txt"
 	outFile << fixed << showpoint << setprecision(2);
 

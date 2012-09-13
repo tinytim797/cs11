@@ -1,8 +1,9 @@
-/*		Author: David Flores
- *		Date: Sep 02, 2012
- *		Program: Aziz_Assign2_SGS.cpp
- *		Description: Displays grades
- *		appropriate for the student
+/*	
+ *  Author: David Flores
+ *	Date: Sep 02, 2012
+ *	Program: Aziz_Assign2_SGS.cpp
+ *	Description: Displays grades
+ *	appropriate for the student
  */
 
 #include <iostream>
