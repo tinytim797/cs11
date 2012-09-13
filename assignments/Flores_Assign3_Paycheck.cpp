@@ -2,7 +2,7 @@
  *		Date: Sep 10, 2012
  *		Program: Aziz_Assign3_Paycheck.cpp
  *		Description: Calculates paycheck
- *      using tax rate.
+ *              using tax rate.
  */
 
 #include <iostream>
