@@ -53,7 +53,7 @@ int main()
 		double valA = (-b/(2*a));
 		double valB = (((b*b) - (4*a*c)));
 		double valC = sqrt(valB);
-		double valD = (sqrt(valB) / (2*a));
+		double valD = ((valC) / (2*a));
 		double valE = (sqrt(-1 * valB) / (2*a));
 		double quadEqPos = (valA + valD);
 		double quadEqNeg = (valA - valD);
