@@ -3,9 +3,9 @@
  *	Date: Sep 27, 2012
  *	Program: Aziz_Assign3_Quadratic.cpp
  *	Description: Read the coefficients
- *  of a quadratic equation and, if the
- *  leading coefficient is non-zero,
- *  calculate and report the solutions.
+ *	of a quadratic equation and, if the
+ *	leading coefficient is non-zero,
+ *	calculate and report the solutions.
  */
 
 #include <iostream>
