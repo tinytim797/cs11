@@ -93,6 +93,7 @@ int main()
 			cout << "x = " << right << setw(13) << quadEqNeg << endl << endl;
 		}
 
+		//Ask the user to re-run program
 		cout << "Would you like to run the quadratic calculator again? (y/n): ";
 		cin >> cont;
 
