@@ -19,24 +19,35 @@ int main()
 	for( int i = 0; i < 80; i++ )
 		{
 			cout << '.';
+			outFile << '.';
 		}
 
 	cout << endl;
 	cout << right << setw(65) << "Inventory Report For Jane Doe International Hardware" << endl;
+
+	outFile << endl;
+	outFile << right << setw(65) << "Inventory Report For Jane Doe International Hardware" << endl;
 	
 	for( i = 0; i < 80; i++ )
 		{
 			cout << '.';
+			outFile << '.';
 		}
 
 
 	cout << right << "\nITEM" << setw(25) << "NUMBER OF UNITS" << setw(25) << "UNIT COST ($)"
-		 << setw(26) << "TOTAL VALUE($)";
+		 << setw(26) << "TOTAL VALUE($)\n";
+
+	outFile << right << "\nITEM" << setw(25) << "NUMBER OF UNITS" << setw(25) << "UNIT COST ($)"
+		 << setw(26) << "TOTAL VALUE($)\n";
 
 	for ( i = 0; i < 80; i++ )
 	{
 		cout << '-';
+		outFile << '-';
 	}
+
+	outFile << endl;
 
 	//system("pause");
 
@@ -50,16 +61,24 @@ int main()
 		cout << fixed << setprecision(2);
 		
 		cout << left << setw(6) << item << right << setw(17) << qty << setw(25) << cost 
-			 << setw(28) << totalValue << endl; 
+			 << setw(28) << totalValue << endl;
+		outFile << left << setw(6) << item << right << setw(17) << qty << setw(25) << cost 
+			 << setw(28) << totalValue << endl;
 	}
 
 	for ( i = 0; i < 80; i++ )
 	{
 		cout << '-';
+		outFile << '-';
 	}
+
+	outFile << endl;
 
 	cout << left << setw(19) << "Inventory Total ($)" << right << setw(57) << inventoryTotal << endl;
 	cout << endl;
+
+	outFile << left << setw(19) << "Inventory Total ($)" << right << setw(57) << inventoryTotal << endl;
+	outFile << endl;
 
 	inFile.close();
 	outFile.close();
