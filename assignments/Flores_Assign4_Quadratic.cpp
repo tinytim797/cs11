@@ -17,7 +17,7 @@ using namespace std;
 int main()
 {
 	//Calculations
-	double a = 0.0, b = 0.0, c = 0.0;
+	int a = 0, b = 0, c = 0;
 	bool calc = true, input = true;
 	char cont = char();
 	
@@ -62,6 +62,7 @@ int main()
 		cout << fixed << setprecision(0);
 
 		cout << "David Flores -\n" << endl;
+		cout << "This program will provide solutions for an equation of the form\n" << endl;
 		cout << "Values:" << endl;
 		cout << "a = " << right << setw(3) << a << endl;
 		cout << "b = " << right << setw(3) << b << endl;
