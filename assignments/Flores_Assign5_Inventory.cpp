@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
 	ifstream inFile("inventory.txt");
-	ofstream outFile("report.txt");
+	ofstream outFile("inventoryReport.txt");
 
 	string item = " ";
 	int qty = 0, i = 0;
@@ -16,40 +16,41 @@ int main()
 	double totalValue = double();
 	double inventoryTotal = double();
 
-	for( int i = 0; i < 80; i++ )
+	for( int i = 0; i < 79; i++ )
 		{
 			cout << '.';
 			outFile << '.';
 		}
 
 	cout << endl;
-	cout << right << setw(65) << "Inventory Report For Jane Doe International Hardware" << endl;
-
 	outFile << endl;
+
+	cout << right << setw(65) << "Inventory Report For Jane Doe International Hardware" << endl;
 	outFile << right << setw(65) << "Inventory Report For Jane Doe International Hardware" << endl;
 	
-	for( i = 0; i < 80; i++ )
+	for( i = 0; i < 79; i++ )
 		{
 			cout << '.';
 			outFile << '.';
 		}
 
+	cout << endl;
+	outFile << endl;
 
 	cout << right << "\nITEM" << setw(25) << "NUMBER OF UNITS" << setw(25) << "UNIT COST ($)"
-		 << setw(26) << "TOTAL VALUE($)\n";
+		 << setw(25) << "TOTAL VALUE($)" << endl;
 
 	outFile << right << "\nITEM" << setw(25) << "NUMBER OF UNITS" << setw(25) << "UNIT COST ($)"
-		 << setw(26) << "TOTAL VALUE($)\n";
+		 << setw(25) << "TOTAL VALUE($)" << endl;
 
-	for ( i = 0; i < 80; i++ )
+	for ( i = 0; i < 79; i++ )
 	{
 		cout << '-';
 		outFile << '-';
 	}
 
+	cout << endl;
 	outFile << endl;
-
-	//system("pause");
 
 	while(!inFile.eof())
 	{		
@@ -58,7 +59,8 @@ int main()
 		
 		totalValue = (qty * cost);
 		inventoryTotal += totalValue;
-		cout << fixed << setprecision(2);
+		cout << showpoint << fixed << setprecision(2);
+		outFile << showpoint << fixed << setprecision(2);
 		
 		cout << left << setw(6) << item << right << setw(17) << qty << setw(25) << cost 
 			 << setw(28) << totalValue << endl;
@@ -66,12 +68,13 @@ int main()
 			 << setw(28) << totalValue << endl;
 	}
 
-	for ( i = 0; i < 80; i++ )
+	for ( i = 0; i < 79; i++ )
 	{
 		cout << '-';
 		outFile << '-';
 	}
 
+	cout << endl;
 	outFile << endl;
 
 	cout << left << setw(19) << "Inventory Total ($)" << right << setw(57) << inventoryTotal << endl;
