@@ -63,9 +63,9 @@ int main()
 		outFile << showpoint << fixed << setprecision(2);
 		
 		cout << left << setw(6) << item << right << setw(17) << qty << setw(25) << cost 
-			 << setw(28) << totalValue << endl;
+			 << setw(26) << totalValue << endl;
 		outFile << left << setw(6) << item << right << setw(17) << qty << setw(25) << cost 
-			 << setw(28) << totalValue << endl;
+			 << setw(26) << totalValue << endl;
 	}
 
 	for ( i = 0; i < 79; i++ )
