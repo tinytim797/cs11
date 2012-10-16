@@ -5,20 +5,18 @@
  *	Description: Asks user for a ZIP code and prints the bar code
  */
 
-
 #include <iostream>
 #include <iomanip>
 
 using namespace std;
 
 int zipInput(int);
-void barcode(int);
 int correctionDigit(int, int, int, int, int);
-void zipCheckPrint(int, int, int, int, int, int);
+void barcodeMatch(int);
+void barcodeOutput(int, int, int, int, int, int);
 
 int main()
 {
-	//Zipcode Input
 	int zip = int();
 	int checkDigit = int();
 
@@ -31,20 +29,10 @@ int main()
 	int d2 = (zip / 1000 ) % 10;
 	int d1 = (zip / 10000 );
 
-	//BARCODE Output with START and END Frame Bar
-	cout << "|";
-	barcode(d1);
-	barcode(d2);
-	barcode(d3);
-	barcode(d4);
-	barcode(d5);
-
 	checkDigit = correctionDigit(d1, d2, d3, d4, d5);
-	barcode(checkDigit);
-	cout << "|";
-	
-	//Zipcode and Correction Digit Numeric Output
-	zipCheckPrint(d1, d2, d3, d4, d5, checkDigit);
+
+	//Output
+	barcodeOutput( d1, d2, d3, d4, d5, checkDigit);
 
 	return 0;
 }
@@ -65,18 +53,19 @@ int correctionDigit(int d1, int d2, int d3, int d4, int d5)
 	int remainder = sum % 10;
 	int digit = int();
 	
-	if( remainder <= 10 )
+	if( remainder <= 10  && remainder > 0)
 	{
 		digit = (10 - remainder);
 		return digit;
 	}
-	else if( remainder <= 5 )
+	else if( remainder <= 5 || remainder == 0 )
 	{
 		return remainder;
 	}
+	
 }
 
-void barcode(int digit)
+void barcodeMatch(int digit)
 {
 	switch(digit)
 	{
@@ -113,9 +102,17 @@ void barcode(int digit)
 	}
 }
 
-void zipCheckPrint(int d1, int d2, int d3, int d4, int d5, int checkDigit)
+void barcodeOutput(int d1, int d2, int d3, int d4, int d5, int checkDigit)
 {
-	cout << "\n" << right << setw(4) << d1 << setw(5) << d2 << setw(5) << d3 
-		                  << setw(5) << d4 << setw(5) << d5 << setw(5) << checkDigit
-		                  << endl;
+	cout << "|";
+	barcodeMatch(d1);
+	barcodeMatch(d2);
+	barcodeMatch(d3);
+	barcodeMatch(d4);
+	barcodeMatch(d5);
+	barcodeMatch(checkDigit);
+	cout << "|" << endl;
+	cout << right << setw(4) << d1 << setw(5) << d2 << setw(5) << d3 << setw(5)
+		                     << d4 << setw(5) << d5 << setw(5) << checkDigit
+							 << endl;
 }
