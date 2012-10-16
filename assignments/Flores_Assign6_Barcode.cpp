@@ -116,6 +116,6 @@ void barcode(int digit)
 void zipCheckPrint(int d1, int d2, int d3, int d4, int d5, int checkDigit)
 {
 	cout << "\n" << right << setw(4) << d1 << setw(5) << d2 << setw(5) << d3 
-		 << setw(5) << d4 << setw(5) << d5 << setw(5) << checkDigit
-		 << endl;
+		                  << setw(5) << d4 << setw(5) << d5 << setw(5) << checkDigit
+		                  << endl;
 }
