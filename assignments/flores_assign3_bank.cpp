@@ -15,57 +15,62 @@ using namespace std;
 // Class bankAccount (abstract class)
 //******************************************************************************
 
-class bankAccount
-{
-private:
-    string accHolderName;
-    string accountType;
-    int accountNumber;
-    double accBalance;
+class BankAccount {
 public:
-    bankAccount(string fullName = "", string accType = "", int accNum = 0, double balance = 0.0);
-    string getAccHolderName() const;
-    string getAccountType() const;
-    int getAccountNumber() const;
-    double getAccBalance() const;
-    void deposit(double amount);
-    void withdrawl(double amount);
-    virtual void print() const = 0;
+    BankAccount(string fullName = "", string accountType = "", int accountNumber = 0, double balance = 0.0);
+
+    string GetAccountHolderName() const;
+    string GetAccountType() const;
+
+    int GetAccountNumber() const;
+    double GetAccountBalance() const;
+
+    void Deposit(double amount);
+    void Withdraw(double amount);
+
+    virtual void Print() const = 0;
+
+private:
+    int accountNumber;
+    double accountBalance;
+
+    string accountHolderName;
+    string accountType;
 };
 
 /*contructor*/
-bankAccount::bankAccount(string fullName, string accType, int accNum, double balance) {
-    accHolderName = fullName;
-    accountType = accType;
-    accountNumber = accNum;
-    accBalance = balance;
+BankAccount::BankAccount(string fullName, string accountType, int accountNumber, double balance) {
+    this->accountHolderName = fullName;
+    this->accountBalance = balance;
+    this->accountNumber = accountNumber;
+    this->accountType = accountNumber;
 }
 
-string bankAccount::getAccHolderName() const{
-    return accHolderName;
+string BankAccount::GetAccountHolderName() const {
+    return accountHolderName;
 }
 
-string bankAccount::getAccountType() const{
+string BankAccount::GetAccountType() const {
     return accountType;
 }
 
-int bankAccount::getAccountNumber() const{
+int BankAccount::GetAccountNumber() const {
     return accountNumber;
 }
 
-double bankAccount::getAccBalance() const{
-    return accBalance;
+double BankAccount::GetAccountBalance() const {
+    return accountBalance;
 }
 
-void bankAccount::deposit(double amount) {
-    accBalance += amount;
+void BankAccount::Deposit(double amount) {
+    accountBalance += amount;
 }
 
-void bankAccount::withdrawl(double amount) {
-    if (amount > accBalance) {
-        cout << "Insufficent Funds. Account balance: " << accBalance << endl;
+void BankAccount::Withdraw(double amount) {
+    if (amount > accountBalance) {
+        cout << "Insufficent Funds. Account balance: " << accountBalance << endl;
     } else {
-        accBalance -= amount;
+        accountBalance -= amount;
     }
 }
 
@@ -73,83 +78,83 @@ void bankAccount::withdrawl(double amount) {
 // Class checkingAccount (abstract class)
 //******************************************************************************
 
-class checkingAccount: public bankAccount
-{
-private:
-    int numOfChecks;
+class CheckingAccount : public BankAccount {
 public:
-    checkingAccount(string fullName = "", string accType = "", int accNum = 0, double balance = 0.0, int numChecks = 10);
-    int getChecksAvailable() const;
-/*pure virtual function*/
-    virtual void writeCheck() = 0;
+    CheckingAccount(string fullName = "", string accountType = "", int accountNumber = 0, double balance = 0.0, int numberOfChecks = 10);
+
+    int GetChecksAvailable() const;
+
+    virtual void WriteCheck() = 0;
+
+private:
+    int numberOfChecks;
 };
 
 /*constructor*/
-checkingAccount::checkingAccount(string fullName, string accType, int accNum, double balance, int numChecks)
-                :bankAccount(fullName, accType, accNum, balance) {
-    numOfChecks = numChecks;
+CheckingAccount::CheckingAccount(string fullName, string accountType, int accountNumber, double balance, int numberOfChecks)
+                :BankAccount(fullName, accountType, accountNumber, balance) {
+    this->numberOfChecks = numberOfChecks;
 }
 
-int checkingAccount::getChecksAvailable() const {
-    return numOfChecks;
+int CheckingAccount::GetChecksAvailable() const {
+    return this->numberOfChecks;
 }
 
 //******************************************************************************
 // Class serviceChargeChecking
 //******************************************************************************
 
-class serviceChargeChecking: public checkingAccount
-{
-private:
-    double minBalance;
-    double intRate;
+class ServiceChargeChecking : public CheckingAccount {
 public:
-    serviceChargeChecking(string fullName = "", string accType = "Service Charge Checking", int accNum = 0, double balance = 0.0, int numChecks = 10, double mBalance = 10.0, double iRate = .01);
-    void writeCheck();
-    double getIntRate() const;
-    void print() const;
+    ServiceChargeChecking(string fullName = "", string accountType = "Service Charge Checking", int accountNumber = 0, double balance = 0.0, int numberOfChecks = 10, double minBalance = 10.0, double interestRate = .01);
+    void WriteCheck();
+
+    double GetInterestRate() const;
+    void Print() const;
+
+private:
+    double minimumBalance;
+    double interestRate;
 };
 
 /*constructor*/
-serviceChargeChecking::serviceChargeChecking(string fullName, string accType, int accNum, double balance, int numChecks, double mBalance, double iRate)
-                      :checkingAccount(fullName, accType, accNum, balance, numChecks) {
-    minBalance = mBalance;
-    intRate = iRate;
+ServiceChargeChecking::ServiceChargeChecking(string fullName, string accountType, int accountNumber, double balance, int numberOfChecks, double minimumBalance, double interestRate)
+                      : CheckingAccount(fullName, accountType, accountNumber, balance, numberOfChecks) {
+    this->minimumBalance = minimumBalance;
+    this->interestRate = interestRate;
 }
 
-void serviceChargeChecking::writeCheck() {
-    
+void ServiceChargeChecking::WriteCheck() {
+
 }
 
-double serviceChargeChecking::getIntRate() const {
-    return intRate;
+double ServiceChargeChecking::GetInterestRate() const {
+    return interestRate;
 }
 
-void serviceChargeChecking::print() const {
-    cout << "Account Number:   " << getAccountNumber() << endl;
-    cout << "Account Type:     " << getAccountType() << endl;
-    cout << "Name:             " << getAccHolderName() << endl;
-    cout << "Balance:          " << getAccBalance() << endl;
-    cout << "Interest Rate:    " << getIntRate() << endl;
-    cout << "Remaining Checks: " << getChecksAvailable() << endl;
+void ServiceChargeChecking::Print() const {
+    cout << "Account Number:   " << GetAccountNumber() << endl;
+    cout << "Account Type:     " << GetAccountType() << endl;
+    cout << "Name:             " << GetAccountHolderName() << endl;
+    cout << "Balance:          " << GetAccountBalance() << endl;
+    cout << "Interest Rate:    " << GetInterestRate() << endl;
+    cout << "Remaining Checks: " << GetChecksAvailable() << endl;
 }
 
 //******************************************************************************
 // Class noServiceChargeChecking
 //******************************************************************************
 
-class noServiceChargeChecking: public checkingAccount
-{
-private:
+class NoServiceChargeChecking : public CheckingAccount {
 public:
+private:
 };
 
 //******************************************************************************
 // Class highInterestChecking
 //******************************************************************************
 
-class highInterestChecking: public checkingAccount
-{
+class HighInterestChecking : public CheckingAccount {
 private:
 public:
 };
@@ -158,8 +163,7 @@ public:
 // Class savingsAccount
 //******************************************************************************
 
-class savingsAccount: public bankAccount
-{
+class SavingsAccount: public BankAccount {
 private:
 public:
 };
@@ -168,8 +172,7 @@ public:
 // Class highInterestSavings
 //******************************************************************************
 
-class highInterestSavings: public savingsAccount
-{
+class HighInterestSavings: public SavingsAccount {
 private:
 public:
 };
@@ -178,8 +181,7 @@ public:
 // Class certificateOfDeposit
 //******************************************************************************
 
-class certificateOfDeposit: public bankAccount
-{
+class CertificateOfDeposit: public BankAccount {
 private:
 public:
 };
@@ -189,11 +191,10 @@ public:
 //******************************************************************************
 
 int main() {
-    
+
     /*testing*/
-    serviceChargeChecking myAccount("David Flores", "Service Charge Checking", 12, 1000.25, 10, 10.0, .01);
-    myAccount.print();
-    
+    ServiceChargeChecking myAccount("David Flores", "Service Charge Checking", 12, 1000.25, 10, 10.0, .01);
+    myAccount.Print();
+
     return 0;
 }
-
