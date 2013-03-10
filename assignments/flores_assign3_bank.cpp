@@ -17,7 +17,7 @@ using namespace std;
 
 class BankAccount {
 public:
-    BankAccount(string fullName = "", string accType = "", int accNum = 0, double balance = 0.0);
+    BankAccount(string fullName = "", int accNum = 0, double balance = 0.0, string accType = "");
     string GetAccHolderName() const;
     string GetAccountType() const;
     int GetAccountNumber() const;
@@ -33,7 +33,7 @@ private:
 };
 
 /*contructor*/
-BankAccount::BankAccount(string fullName, string accType, int accNum, double balance) {
+BankAccount::BankAccount(string fullName, int accNum, double balance, string accType) {
     accHolderName = fullName;
     accountType = accType;
     accountNumber = accNum;
@@ -74,7 +74,7 @@ void BankAccount::Withdrawl(double amount) {
 
 class CheckingAccount : public BankAccount {
 public:
-    CheckingAccount(string fullName = "", string accType = "", int accNum = 0, double balance = 0.0, int numChecks = 10);
+    CheckingAccount(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 10, string accType = "");
     int GetChecksAvailable() const;
     /*pure virtual function*/
     virtual void WriteCheck() = 0;
@@ -83,8 +83,8 @@ private:
 };
 
 /*constructor*/
-CheckingAccount::CheckingAccount(string fullName, string accType, int accNum, double balance, int numChecks)
-:BankAccount(fullName, accType, accNum, balance) {
+CheckingAccount::CheckingAccount(string fullName, int accNum, double balance, int numChecks, string accType)
+:BankAccount(fullName, accNum, balance, accType) {
     numOfChecks = numChecks;
 }
 
@@ -107,7 +107,7 @@ private:
 
 /*constructor*/
 ServiceChargeChecking::ServiceChargeChecking(string fullName, int accNum, double balance, int numChecks, double mServCharge, string accType)
-                      :CheckingAccount(fullName, accType, accNum, balance, numChecks) {
+                      :CheckingAccount(fullName, accNum, balance, numChecks, accType) {
     monthServCharge = mServCharge;
 }
 
@@ -139,8 +139,7 @@ private:
 };
 
 /*constructor*/
-NoServiceChargeChecking::NoServiceChargeChecking(string fullName, int accNum, double balance, int numChecks, double mBalance, double iRate, string accType)
-                        :CheckingAccount(fullName, accType, accNum, balance, numChecks) {
+NoServiceChargeChecking::NoServiceChargeChecking(string fullName, int accNum, double balance, int numChecks, double mBalance, double iRate, string accType)                   :CheckingAccount(fullName, accNum, balance, numChecks, accType) {
     minBalance = mBalance;
     intRate = iRate;
 }
@@ -168,7 +167,7 @@ void NoServiceChargeChecking::Print() const {
 
 class HighInterestChecking : public NoServiceChargeChecking {
 public:
-    HighInterestChecking(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 100, double mBalance = 50.0, double iRate = .05, string accType = "No Service Charge Checking");
+    HighInterestChecking(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 100, double mBalance = 50.0, double iRate = .05, string accType = "HighInterestChecking");
     void WriteCheck();
 private:
 };
