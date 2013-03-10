@@ -12,56 +12,55 @@
 using namespace std;
 
 //******************************************************************************
-// Class bankAccount (abstract class)
+// Class BankAccount (abstract class)
 //******************************************************************************
 
-class bankAccount
-{
+class BankAccount {
+public:
+    BankAccount(string fullName = "", string accType = "", int accNum = 0, double balance = 0.0);
+    string GetAccHolderName() const;
+    string GetAccountType() const;
+    int GetAccountNumber() const;
+    double GetAccBalance() const;
+    void Deposit(double amount);
+    void Withdrawl(double amount);
+    virtual void Print() const = 0;
 private:
     string accHolderName;
     string accountType;
     int accountNumber;
     double accBalance;
-public:
-    bankAccount(string fullName = "", string accType = "", int accNum = 0, double balance = 0.0);
-    string getAccHolderName() const;
-    string getAccountType() const;
-    int getAccountNumber() const;
-    double getAccBalance() const;
-    void deposit(double amount);
-    void withdrawl(double amount);
-    virtual void print() const = 0;
 };
 
 /*contructor*/
-bankAccount::bankAccount(string fullName, string accType, int accNum, double balance) {
+BankAccount::BankAccount(string fullName, string accType, int accNum, double balance) {
     accHolderName = fullName;
     accountType = accType;
     accountNumber = accNum;
     accBalance = balance;
 }
 
-string bankAccount::getAccHolderName() const{
+string BankAccount::GetAccHolderName() const{
     return accHolderName;
 }
 
-string bankAccount::getAccountType() const{
+string BankAccount::GetAccountType() const{
     return accountType;
 }
 
-int bankAccount::getAccountNumber() const{
+int BankAccount::GetAccountNumber() const{
     return accountNumber;
 }
 
-double bankAccount::getAccBalance() const{
+double BankAccount::GetAccBalance() const{
     return accBalance;
 }
 
-void bankAccount::deposit(double amount) {
+void BankAccount::Deposit(double amount) {
     accBalance += amount;
 }
 
-void bankAccount::withdrawl(double amount) {
+void BankAccount::Withdrawl(double amount) {
     if (amount > accBalance) {
         cout << "Insufficent Funds. Account balance: " << accBalance << endl;
     } else {
@@ -70,118 +69,142 @@ void bankAccount::withdrawl(double amount) {
 }
 
 //******************************************************************************
-// Class checkingAccount (abstract class)
+// Class CheckingAccount (abstract class)
 //******************************************************************************
 
-class checkingAccount: public bankAccount
-{
+class CheckingAccount : public BankAccount {
+public:
+    CheckingAccount(string fullName = "", string accType = "", int accNum = 0, double balance = 0.0, int numChecks = 10);
+    int GetChecksAvailable() const;
+    /*pure virtual function*/
+    virtual void WriteCheck() = 0;
 private:
     int numOfChecks;
-public:
-    checkingAccount(string fullName = "", string accType = "", int accNum = 0, double balance = 0.0, int numChecks = 10);
-    int getChecksAvailable() const;
-/*pure virtual function*/
-    virtual void writeCheck() = 0;
 };
 
 /*constructor*/
-checkingAccount::checkingAccount(string fullName, string accType, int accNum, double balance, int numChecks)
-                :bankAccount(fullName, accType, accNum, balance) {
+CheckingAccount::CheckingAccount(string fullName, string accType, int accNum, double balance, int numChecks)
+:BankAccount(fullName, accType, accNum, balance) {
     numOfChecks = numChecks;
 }
 
-int checkingAccount::getChecksAvailable() const {
+int CheckingAccount::GetChecksAvailable() const {
     return numOfChecks;
 }
 
 //******************************************************************************
-// Class serviceChargeChecking
+// Class ServiceChargeChecking
 //******************************************************************************
 
-class serviceChargeChecking: public checkingAccount
-{
-private:
-    double minBalance;
-    double intRate;
+class ServiceChargeChecking : public CheckingAccount {
 public:
-    serviceChargeChecking(string fullName = "", string accType = "Service Charge Checking", int accNum = 0, double balance = 0.0, int numChecks = 10, double mBalance = 10.0, double iRate = .01);
-    void writeCheck();
-    double getIntRate() const;
-    void print() const;
+    ServiceChargeChecking(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 10, double mServCharge = 10.00, string accType = "Service Charge Checking");
+    void WriteCheck();
+    void Print() const;
+private:
+    double monthServCharge;
 };
 
 /*constructor*/
-serviceChargeChecking::serviceChargeChecking(string fullName, string accType, int accNum, double balance, int numChecks, double mBalance, double iRate)
-                      :checkingAccount(fullName, accType, accNum, balance, numChecks) {
+ServiceChargeChecking::ServiceChargeChecking(string fullName, int accNum, double balance, int numChecks, double mServCharge, string accType)
+                      :CheckingAccount(fullName, accType, accNum, balance, numChecks) {
+    monthServCharge = mServCharge;
+}
+
+void ServiceChargeChecking::WriteCheck() {
+    
+}
+
+void ServiceChargeChecking::Print() const {
+    cout << "Account Number:   " << GetAccountNumber() << endl;
+    cout << "Account Type:     " << GetAccountType() << endl;
+    cout << "Name:             " << GetAccHolderName() << endl;
+    cout << "Balance:          " << GetAccBalance() << endl;
+    cout << "Remaining Checks: " << GetChecksAvailable() << endl;
+}
+
+//******************************************************************************
+// Class NoServiceChargeChecking
+//******************************************************************************
+
+class NoServiceChargeChecking : public CheckingAccount {
+public:
+    NoServiceChargeChecking(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 100, double mBalance = 10.0, double iRate = .01, string accType = "No Service Charge Checking");
+    void WriteCheck();
+    double GetIntRate() const;
+    void Print() const;
+private:
+    double minBalance;
+    double intRate;
+};
+
+/*constructor*/
+NoServiceChargeChecking::NoServiceChargeChecking(string fullName, int accNum, double balance, int numChecks, double mBalance, double iRate, string accType)
+                        :CheckingAccount(fullName, accType, accNum, balance, numChecks) {
     minBalance = mBalance;
     intRate = iRate;
 }
 
-void serviceChargeChecking::writeCheck() {
+void NoServiceChargeChecking::WriteCheck() {
     
 }
 
-double serviceChargeChecking::getIntRate() const {
+double NoServiceChargeChecking::GetIntRate() const {
     return intRate;
 }
 
-void serviceChargeChecking::print() const {
-    cout << "Account Number:   " << getAccountNumber() << endl;
-    cout << "Account Type:     " << getAccountType() << endl;
-    cout << "Name:             " << getAccHolderName() << endl;
-    cout << "Balance:          " << getAccBalance() << endl;
-    cout << "Interest Rate:    " << getIntRate() << endl;
-    cout << "Remaining Checks: " << getChecksAvailable() << endl;
+void NoServiceChargeChecking::Print() const {
+    cout << "Account Number:   " << GetAccountNumber() << endl;
+    cout << "Account Type:     " << GetAccountType() << endl;
+    cout << "Name:             " << GetAccHolderName() << endl;
+    cout << "Balance:          " << GetAccBalance() << endl;
+    cout << "Interest Rate:    " << GetIntRate() << endl;
+    cout << "Remaining Checks: " << GetChecksAvailable() << endl;
 }
 
 //******************************************************************************
-// Class noServiceChargeChecking
+// Class HighInterestChecking
 //******************************************************************************
 
-class noServiceChargeChecking: public checkingAccount
-{
-private:
+class HighInterestChecking : public NoServiceChargeChecking {
 public:
+    HighInterestChecking(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 100, double mBalance = 50.0, double iRate = .05, string accType = "No Service Charge Checking");
+    void WriteCheck();
+private:
+};
+
+/*constructor*/
+HighInterestChecking::HighInterestChecking(string fullName, int accNum, double balance, int numChecks, double mBalance, double iRate, string accType) {}
+
+void HighInterestChecking::WriteCheck() {
+    
+}
+
+//******************************************************************************
+// Class SavingsAccount
+//******************************************************************************
+
+class SavingsAccount : public BankAccount {
+public:
+private:
 };
 
 //******************************************************************************
-// Class highInterestChecking
+// Class HighInterestSavings
 //******************************************************************************
 
-class highInterestChecking: public checkingAccount
-{
-private:
+class HighInterestSavings : public SavingsAccount {
 public:
+private:
 };
 
 //******************************************************************************
-// Class savingsAccount
+// Class CertificateOfDeposit
 //******************************************************************************
 
-class savingsAccount: public bankAccount
-{
-private:
+class CertificateOfDeposit : public BankAccount {
 public:
-};
-
-//******************************************************************************
-// Class highInterestSavings
-//******************************************************************************
-
-class highInterestSavings: public savingsAccount
-{
 private:
-public:
-};
-
-//******************************************************************************
-// Class certificateOfDeposit
-//******************************************************************************
-
-class certificateOfDeposit: public bankAccount
-{
-private:
-public:
 };
 
 //******************************************************************************
@@ -191,9 +214,8 @@ public:
 int main() {
     
     /*testing*/
-    serviceChargeChecking myAccount("David Flores", "Service Charge Checking", 12, 1000.25, 10, 10.0, .01);
-    myAccount.print();
+//    ServiceChargeChecking myAccount("David Flores", "Service Charge Checking", 12, 1000.25, 10, 10.0, .01);
+//    myAccount.Print();
     
     return 0;
 }
-
