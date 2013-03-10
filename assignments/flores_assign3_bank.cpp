@@ -92,7 +92,7 @@ private:
 
 /*constructor*/
 CheckingAccount::CheckingAccount(string fullName, int accNum, double balance, int numChecks, string accType)
-:BankAccount(fullName, accNum, balance, accType) {
+                :BankAccount(fullName, accNum, balance, accType) {
     numOfChecks = numChecks;
 }
 
@@ -239,8 +239,21 @@ void SavingsAccount::Print() const {
 
 class HighInterestSavings : public SavingsAccount {
 public:
-private:
+    HighInterestSavings(string fullName = "", int accNum = 0, double balance = 0.0, double iRate = .06, string accType = "HighInterestSavings");
+    
+    void Print() const;
 };
+
+HighInterestSavings::HighInterestSavings(string fullName, int accNum, double balance, double iRate, string accType)
+                    :SavingsAccount(fullName, accNum, balance, iRate, accType) {}
+
+void HighInterestSavings::Print() const {
+    cout << "Account Number:   " << GetAccountNumber() << endl;
+    cout << "Account Type:     " << GetAccountType() << endl;
+    cout << "Name:             " << GetAccHolderName() << endl;
+    cout << "Balance:          " << GetAccBalance() << endl;
+    cout << "Interest Rate:    " << GetIntRateSave() << endl;
+}
 
 //******************************************************************************
 // Class CertificateOfDeposit
@@ -248,8 +261,31 @@ private:
 
 class CertificateOfDeposit : public BankAccount {
 public:
+    CertificateOfDeposit(string fullName = "", int accNum = 0, double balance = 0.0, double iRate = .15, string accType = "CertificateOfDeposit");
+    
+    double GetIntRateCD() const ;
+    void Print() const;
+    
 private:
+    double intRateCD;
 };
+
+CertificateOfDeposit::CertificateOfDeposit(string fullName, int accNum, double balance, double iRate, string accType)
+                     :BankAccount(fullName, accNum, balance, accType) {
+    intRateCD = iRate;
+}
+
+double CertificateOfDeposit::GetIntRateCD() const {
+    return intRateCD;
+}
+
+void CertificateOfDeposit::Print() const {
+    cout << "Account Number:   " << GetAccountNumber() << endl;
+    cout << "Account Type:     " << GetAccountType() << endl;
+    cout << "Name:             " << GetAccHolderName() << endl;
+    cout << "Balance:          " << GetAccBalance() << endl;
+    cout << "Interest Rate:    " << GetIntRateCD() << endl;
+}
 
 //******************************************************************************
 // Main Function
@@ -261,8 +297,14 @@ int main() {
 //    HighInterestChecking testingI("David Flores", 1234, 1000.00, 100, 50, .05);
 //    testingI.Print();
     
-    SavingsAccount testingII("David Flores", 1234, 1000.00);
-    testingII.Print();
+//    SavingsAccount testingII("David Flores", 1234, 1000.00);
+//    testingII.Print();
+    
+//    HighInterestSavings testingIII("David Flores", 1234, 1000.00);
+//    testingIII.Print();
+    
+    CertificateOfDeposit testingIV("David Flores", 1234, 1000.00);
+    testingIV.Print();
     
     return 0;
 }
