@@ -29,6 +29,7 @@ public:
     void Withdrawl(double amount);
     
     virtual void Print() const = 0;
+    
 private:
     string accHolderName;
     string accountType;
@@ -45,19 +46,19 @@ BankAccount::BankAccount(string fullName, int accNum, double balance, string acc
     accBalance = balance;
 }
 
-string BankAccount::GetAccHolderName() const{
+string BankAccount::GetAccHolderName() const {
     return accHolderName;
 }
 
-string BankAccount::GetAccountType() const{
+string BankAccount::GetAccountType() const {
     return accountType;
 }
 
-int BankAccount::GetAccountNumber() const{
+int BankAccount::GetAccountNumber() const {
     return accountNumber;
 }
 
-double BankAccount::GetAccBalance() const{
+double BankAccount::GetAccBalance() const {
     return accBalance;
 }
 
@@ -80,9 +81,11 @@ void BankAccount::Withdrawl(double amount) {
 class CheckingAccount : public BankAccount {
 public:
     CheckingAccount(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 10, string accType = "");
+    
     int GetChecksAvailable() const;
     /*pure virtual function*/
     virtual void WriteCheck() = 0;
+    
 private:
     int numOfChecks;
 };
@@ -104,8 +107,10 @@ int CheckingAccount::GetChecksAvailable() const {
 class ServiceChargeChecking : public CheckingAccount {
 public:
     ServiceChargeChecking(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 10, double mServCharge = 10.00, string accType = "Service Charge Checking");
+    
     void WriteCheck();
     void Print() const;
+    
 private:
     double monthServCharge;
 };
@@ -135,18 +140,21 @@ void ServiceChargeChecking::Print() const {
 class NoServiceChargeChecking : public CheckingAccount {
 public:
     NoServiceChargeChecking(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 100, double mBalance = 10.0, double iRate = .01, string accType = "No Service Charge Checking");
+    
     void WriteCheck();
     double GetIntRate() const;
+    
     void Print() const;
+    
 private:
-    double minBalance;
-    double intRate;
+    double minBalanceCheck;
+    double intRateCheck;
 };
 
 /*constructor*/
 NoServiceChargeChecking::NoServiceChargeChecking(string fullName, int accNum, double balance, int numChecks, double mBalance, double iRate, string accType)                   :CheckingAccount(fullName, accNum, balance, numChecks, accType) {
-    minBalance = mBalance;
-    intRate = iRate;
+    minBalanceCheck = mBalance;
+    intRateCheck = iRate;
 }
 
 void NoServiceChargeChecking::WriteCheck() {
@@ -154,7 +162,7 @@ void NoServiceChargeChecking::WriteCheck() {
 }
 
 double NoServiceChargeChecking::GetIntRate() const {
-    return intRate;
+    return intRateCheck;
 }
 
 void NoServiceChargeChecking::Print() const {
@@ -173,17 +181,18 @@ void NoServiceChargeChecking::Print() const {
 class HighInterestChecking : public NoServiceChargeChecking {
 public:
     HighInterestChecking(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 100, double mBalance = 50.0, double iRate = .05, string accType = "HighInterestChecking");
+    
     void WriteCheck();
-    void Print();
-private:
+    void Print() const;
 };
 
 /*constructor*/
 HighInterestChecking::HighInterestChecking(string fullName, int accNum, double balance, int numChecks, double mBalance, double iRate, string accType)
-                     :NoServiceChargeChecking(fullName, accNum, balance, numChecks, mBalance, iRate, accType){}
+                     :NoServiceChargeChecking(fullName, accNum, balance, numChecks, mBalance, iRate, accType) {}
 
 void HighInterestChecking::WriteCheck() {}
-void HighInterestChecking::Print() {
+
+void HighInterestChecking::Print() const {
     cout << "Account Number:   " << GetAccountNumber() << endl;
     cout << "Account Type:     " << GetAccountType() << endl;
     cout << "Name:             " << GetAccHolderName() << endl;
@@ -198,9 +207,31 @@ void HighInterestChecking::Print() {
 
 class SavingsAccount : public BankAccount {
 public:
-    SavingsAccount();
+    SavingsAccount(string fullName = "", int accNum = 0, double balance = 0.0, double iRate = .02, string accType = "SavingsAccount" );
+    
+    double GetIntRateSave() const;
+    void Print() const;
+    
 private:
+    double intRateSave;
 };
+
+SavingsAccount::SavingsAccount(string fullName, int accNum, double balance, double iRate, string accType)
+               :BankAccount(fullName, accNum, balance, accType) {
+    intRateSave = iRate;
+}
+
+double SavingsAccount::GetIntRateSave() const {
+    return intRateSave;
+}
+
+void SavingsAccount::Print() const {
+    cout << "Account Number:   " << GetAccountNumber() << endl;
+    cout << "Account Type:     " << GetAccountType() << endl;
+    cout << "Name:             " << GetAccHolderName() << endl;
+    cout << "Balance:          " << GetAccBalance() << endl;
+    cout << "Interest Rate:    " << GetIntRateSave() << endl;
+}
 
 //******************************************************************************
 // Class HighInterestSavings
@@ -227,8 +258,11 @@ private:
 int main() {
     
     /*testing*/
-    HighInterestChecking testing("David Flores", 1234, 1000.00, 100, 50, .05);
-    testing.Print();
+//    HighInterestChecking testingI("David Flores", 1234, 1000.00, 100, 50, .05);
+//    testingI.Print();
+    
+    SavingsAccount testingII("David Flores", 1234, 1000.00);
+    testingII.Print();
     
     return 0;
 }
