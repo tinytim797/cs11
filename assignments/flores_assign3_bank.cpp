@@ -239,13 +239,19 @@ void SavingsAccount::Print() const {
 
 class HighInterestSavings : public SavingsAccount {
 public:
-    HighInterestSavings(string fullName = "", int accNum = 0, double balance = 0.0, double iRate = .06, string accType = "HighInterestSavings");
+    HighInterestSavings(string fullName = "", int accNum = 0, double balance = 0.0, double iRate = .06, double mbalance = 1000.00, string accType = "HighInterestSavings");
     
+    double getMinBalanceSave();
     void Print() const;
+    
+private:
+    double minBalanceSave;
 };
 
-HighInterestSavings::HighInterestSavings(string fullName, int accNum, double balance, double iRate, string accType)
-                    :SavingsAccount(fullName, accNum, balance, iRate, accType) {}
+HighInterestSavings::HighInterestSavings(string fullName, int accNum, double balance, double iRate, double mBalance, string accType)
+                    :SavingsAccount(fullName, accNum, balance, iRate, accType) {
+    minBalanceSave = mBalance;
+}
 
 void HighInterestSavings::Print() const {
     cout << "Account Number:   " << GetAccountNumber() << endl;
@@ -300,11 +306,11 @@ int main() {
 //    SavingsAccount testingII("David Flores", 1234, 1000.00);
 //    testingII.Print();
     
-//    HighInterestSavings testingIII("David Flores", 1234, 1000.00);
-//    testingIII.Print();
+    HighInterestSavings testingIII("David Flores", 1234, 1000.00);
+    testingIII.Print();
     
-    CertificateOfDeposit testingIV("David Flores", 1234, 1000.00);
-    testingIV.Print();
+//    CertificateOfDeposit testingIV("David Flores", 1234, 1000.00);
+//    testingIV.Print();
     
     return 0;
 }
