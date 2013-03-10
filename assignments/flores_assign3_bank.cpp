@@ -18,16 +18,21 @@ using namespace std;
 class BankAccount {
 public:
     BankAccount(string fullName = "", int accNum = 0, double balance = 0.0, string accType = "");
+    
     string GetAccHolderName() const;
     string GetAccountType() const;
+    
     int GetAccountNumber() const;
     double GetAccBalance() const;
+    
     void Deposit(double amount);
     void Withdrawl(double amount);
+    
     virtual void Print() const = 0;
 private:
     string accHolderName;
     string accountType;
+    
     int accountNumber;
     double accBalance;
 };
@@ -169,14 +174,22 @@ class HighInterestChecking : public NoServiceChargeChecking {
 public:
     HighInterestChecking(string fullName = "", int accNum = 0, double balance = 0.0, int numChecks = 100, double mBalance = 50.0, double iRate = .05, string accType = "HighInterestChecking");
     void WriteCheck();
+    void Print();
 private:
 };
 
 /*constructor*/
-HighInterestChecking::HighInterestChecking(string fullName, int accNum, double balance, int numChecks, double mBalance, double iRate, string accType) {}
+HighInterestChecking::HighInterestChecking(string fullName, int accNum, double balance, int numChecks, double mBalance, double iRate, string accType)
+                     :NoServiceChargeChecking(fullName, accNum, balance, numChecks, mBalance, iRate, accType){}
 
-void HighInterestChecking::WriteCheck() {
-    
+void HighInterestChecking::WriteCheck() {}
+void HighInterestChecking::Print() {
+    cout << "Account Number:   " << GetAccountNumber() << endl;
+    cout << "Account Type:     " << GetAccountType() << endl;
+    cout << "Name:             " << GetAccHolderName() << endl;
+    cout << "Balance:          " << GetAccBalance() << endl;
+    cout << "Interest Rate:    " << GetIntRate() << endl;
+    cout << "Remaining Checks: " << GetChecksAvailable() << endl;
 }
 
 //******************************************************************************
@@ -185,6 +198,7 @@ void HighInterestChecking::WriteCheck() {
 
 class SavingsAccount : public BankAccount {
 public:
+    SavingsAccount();
 private:
 };
 
@@ -213,8 +227,8 @@ private:
 int main() {
     
     /*testing*/
-//    ServiceChargeChecking myAccount("David Flores", "Service Charge Checking", 12, 1000.25, 10, 10.0, .01);
-//    myAccount.Print();
+    HighInterestChecking testing("David Flores", 1234, 1000.00, 100, 50, .05);
+    testing.Print();
     
     return 0;
 }
